@@ -1,0 +1,550 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui;
+}
+
+body {
+  background: #0e0e10;
+  color: #f2f2f2;
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10vw;
+  position: relative;
+  background: url("assets/images/Damenlesehalle.jpg") center/cover no-repeat;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 1;
+  font-size: 64px;
+  color: black;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.hero h1 span {
+  background: white;
+  padding: 0.05em 0.35em;
+
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+
+  display: inline;
+  position: relative;
+}
+
+
+.hero-subtitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: black;
+  max-width: 900px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.hero-subtitle span {
+  background: white;
+  padding: 0.05em 0.35em; /* 🔥 weniger Höhe */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  display: inline;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+
+#bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55) contrast(1.1);
+  transition: none; /* kein Fade mehr */
+  will-change: auto;
+}
+
+#bg-layer-2 {
+  opacity: 0;
+}
+
+.chapter {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* TOPBAR */
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: rgba(10,10,12,0.8);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.topbar a {
+  color: #aaa;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.topbar a.active {
+  color: white;
+}
+
+/* CHAPTER */
+.chapter {
+  min-height: 100vh;
+  padding: 120px 10vw;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.chapter-hero {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;  /* 🔥 horizontal zentrieren */
+  padding: 60px;
+}
+
+/* große Nummer links oben */
+.chapter-number {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 120px;
+  font-weight: 300;
+  color: white;
+  opacity: 0.9;
+}
+
+/* schwarzer Balken für Titel */
+.chapter-title-box {
+  background: black;
+  padding: 20px 30px;
+  display: inline-block;
+  max-width: 80%;
+  text-align: center;   /* 🔥 zentriert den Text */
+}
+
+.chapter-title-box h2 {
+  font-size: 56px;
+  font-weight: 600;
+  margin: 0;            /* 🔥 entfernt Standardabstände */
+  text-align: center;
+}
+
+.chapter.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* BLOCKS */
+.text-block {
+  width: 100%;
+  max-width: none;   /* 🔥 wichtig */
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 40px 0;
+  color: #ddd;
+}
+
+.media-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin: 80px 0;
+}
+
+.media-block img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.media-image {
+  position: relative;
+}
+
+.media-text {
+  display: flex;
+  align-items: center;
+}
+
+.image-block {
+  width: 100%;
+  margin: 60px 0;
+  border-radius: 12px;
+}
+
+
+.image-wrapper img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 60px 0;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.gallery-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 60px 0;
+}
+
+.gallery-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.gallery-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.gallery-track .image-wrapper {
+  flex: 0 0 calc(100% / 3);
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.gallery-track img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Pfeile */
+.gallery-btn {
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 30px;
+  width: 40px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.gallery-btn:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+/* nur Einzelbilder im Textfluss */
+.chapter > .image-wrapper {
+  max-width: 900px;
+  margin: 80px auto;
+}
+
+
+.info-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(45, 108, 223, 0.85);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  z-index: 5;
+}
+
+.meta-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.meta-box {
+  background: #111;
+  padding: 25px;
+  max-width: 500px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.meta-box .source {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+.meta-box a {
+  color: #c1d2e6;
+  text-decoration: underline;
+}
+
+.nav-overview {
+  position: relative;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(10,10,12,0.95);
+  backdrop-filter: blur(12px);
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+  min-width: 200px;
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 8px 10px;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.nav-dropdown a:hover {
+  color: white;
+}
+
+.nav-dropdown.open {
+  display: block;
+}
+
+.chapter-marker {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* 🔥 WICHTIG: überlappt Background-Wechsel */
+  margin: -120px 0 120px 0;
+  z-index: 10;
+  mix-blend-mode: normal;
+}
+
+.chapter-pill {
+  width: 110vw;
+  margin-left: -5vw;
+
+  height: 420px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 12vw;
+
+  color: white;
+  background: var(--chapter-color);
+
+  position: relative;
+
+  box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+
+  transition: transform 0.6s ease;
+  overflow: hidden; /* 🔥 wichtig für kreative Formen */
+}
+
+.chapter-pill.style-banner {
+  background: var(--chapter-color);
+  color: white;
+
+  padding: 0 12vw;
+  height: 380px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    98% 85%,
+    2% 100%
+  );
+
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.chapter-pill.style-diagonal {
+  background: var(--chapter-color);
+  color: white;
+
+  height: 380px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12vw;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    0 70%
+  );
+}
+.chapter-pill.style-pfeil {
+  background: var(--chapter-color);
+  color: white;
+
+  height: 380px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12vw;
+
+  clip-path: polygon(
+    100% 0%,
+    100% 50%,
+    100% 100%,
+    10% 100%,
+    0 50%,
+    10% 0%
+  );
+}
+.chapter-pill.style-sprechblase {
+  background: var(--chapter-color);
+  color: white;
+
+  height: 380px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12vw;
+
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 85%,
+    80% 85%,
+    75% 100%,
+    70% 85%,
+    0% 85%
+  );
+}
+.chapter-pill.style-blob {
+  border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%;
+  animation: morph 8s infinite ease-in-out;
+}
+
+@keyframes morph {
+  0% { border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%; }
+  50% { border-radius: 30% 70% 40% 60% / 60% 40% 70% 30%; }
+  100% { border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%; }
+}
+
+.chapter.active .chapter-pill {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+
+/* Nummer */
+.chapter-pill .num {
+  font-size: 40px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Titel */
+.chapter-pill .title {
+  font-size: 52px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.chapter-pill.style-typofocus {
+  height: 420px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 0 12vw;
+
+  background: var(--chapter-color);
+  color: white;
+}
+
+.chapter-pill.style-typofocus .num {
+  font-size: 120px;
+  opacity: 0.2;
+}
+
+.chapter-pill.style-typofocus .title {
+  font-size: 64px;
+  font-weight: 600;
+}
+
+
+.media-slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 10px;
+}
+
+.media-slide img,
+.media-slide video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.gallery-track .media-slide {
+  flex: 0 0 100%; /* 🔥 immer full width */
+}
